@@ -13,7 +13,7 @@ function Products() {
     }, 2000);
   };
 
-  useEffect(() => {
+  useEffect(() => {         //useEffect(()=>{},[]) (fonction et tableau , si valeur dans tableau changes la fonction est lancée )
     setTimeout(() => {
       setmsg(false);
     }, 3000);

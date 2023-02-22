@@ -4,13 +4,21 @@ import { useState } from 'react';
 
 function Product(props) {
   const [like, setLike] = useState(props.item.like);
+  const [quantity, setquantity] = useState(props.item.quantity);
+
+  const decrementer =()=>{
+    setquantity(quantity-1)
+    console.log(quantity)
+  }
   const addlikes = () => {
     setLike(like + 1);
   }
+  
   return (
 
-    <div >
-    <Card style={{ width: '18rem',height:'35rem' }} >
+    <div>
+      
+    <Card style={{ width: '18rem',height:'35rem' }} className={like>=5?"bestProduct":"product"} >
 
 
       <Card.Img className='fluid' variant="top" src={require('../assets/images/'+props.item.img)} style={{ height:'15rem' }}/>
@@ -22,7 +30,7 @@ function Product(props) {
           Prix:{props.item.price} DT
         </Card.Text>
         <Card.Text>
-          Quantity : {props.item.quantity} 
+          Quantity : {quantity} 
         </Card.Text>
         <Card.Text>
           Likes : {like} 
@@ -30,7 +38,7 @@ function Product(props) {
         
 
         <Button className='d' onClick={addlikes}>Like</Button>
-        <Button className='d' disabled={props.item.quantity===0} onClick={props.buy}>Buy</Button>
+        <Button className='d' disabled={props.item.quantity===0} onClick={props.buy && decrementer}>Buy</Button>
       </Card.Body>
       
     </Card>
