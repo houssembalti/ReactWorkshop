@@ -1,12 +1,14 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Product(props) {
   const [like, setLike] = useState(props.item.like);
   const [quantity, setquantity] = useState(props.item.quantity);
 
   const decrementer =()=>{
+    props.buy()
     setquantity(quantity-1)
     console.log(quantity)
   }
@@ -23,7 +25,10 @@ function Product(props) {
 
       <Card.Img className='fluid' variant="top" src={require('../assets/images/'+props.item.img)} style={{ height:'15rem' }}/>
       <Card.Body >
-      <Card.Title>{props.item.name}</Card.Title>
+        <NavLink to={`${props.item.name}`}>
+        <Card.Title>{props.item.name}</Card.Title>
+
+        </NavLink>
       
         
         <Card.Text>
@@ -37,8 +42,8 @@ function Product(props) {
         </Card.Text>
         
 
-        <Button className='d' onClick={addlikes}>Like</Button>
-        <Button className='d' disabled={props.item.quantity===0} onClick={props.buy && decrementer}>Buy</Button>
+        <Button className='d' onClick={addlikes}>Like</Button>  
+        <Button className='d' disabled={props.item.quantity===0} onClick={ decrementer}>Buy</Button>
       </Card.Body>
       
     </Card>
