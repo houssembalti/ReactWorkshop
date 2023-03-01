@@ -48,6 +48,9 @@ function Product(props) {
 
         <Button className='d' onClick={addlikes}>Like</Button>  
         <Button className='d' disabled={props.item.quantity===0} onClick={ decrementer}>Buy</Button>
+        <Button className='d' to={`update/${props.id}`}>Update</Button>
+
+
       </Card.Body>
       
     </Card>
