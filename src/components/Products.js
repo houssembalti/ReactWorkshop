@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Produ from "../Data/products.json";
 import Product from "./Product";
 import { Alert } from "react-bootstrap";
+import { getallProducts } from "../service/api";
 
 function Products() {
+  const [Produ, setProducts] = useState([]);
   const [showalert, setalert] = useState(false);
   const [msg, setmsg] = useState(true);
+  const getproducts = async () => {
+    const response = await getallProducts();
+    setProducts(response.data);
+  };
   const buy = () => {
     setalert(true);
     setTimeout(() => {
@@ -13,11 +18,13 @@ function Products() {
     }, 2000);
   };
 
-  useEffect(() => {         //useEffect(()=>{},[]) (fonction et tableau , si valeur dans tableau changes la fonction est lancée )
+  useEffect(() => {
+    getproducts(); //useEffect(()=>{},[]) (fonction et tableau , si valeur dans tableau changes la fonction est lancée )
     setTimeout(() => {
       setmsg(false);
     }, 3000);
-  });
+  },[]);
+  useEffect(() => {});
   return (
     <div>
       <Alert show={msg} variant="success">

@@ -1,12 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import {getallProducts} from '../service/api'
 
 function Product(props) {
   const [like, setLike] = useState(props.item.like);
   const [quantity, setquantity] = useState(props.item.quantity);
+  
 
+  useEffect(()=>{
+  })
   const decrementer =()=>{
     props.buy()
     setquantity(quantity-1)
@@ -25,8 +29,8 @@ function Product(props) {
 
       <Card.Img className='fluid' variant="top" src={require('../assets/images/'+props.item.img)} style={{ height:'15rem' }}/>
       <Card.Body >
-        <NavLink to={`${props.item.name}`}>
-        <Card.Title>{props.item.name}</Card.Title>
+        <NavLink to={`${props.item.id}`}>
+        <Card.Title>{props.item.name} </Card.Title>
 
         </NavLink>
       
